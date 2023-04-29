@@ -16,4 +16,5 @@ target_link_libraries(helloworld_test
   GTest::GTest
   helloWorldLib)
 
-  add_test(NAME test COMMAND helloworld_test ${PATCH_NUMBER_CONSTANT})
+enable_testing()
+add_test(NAME test COMMAND helloworld_test ${PATCH_NUMBER_CONSTANT})
