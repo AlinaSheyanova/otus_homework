@@ -4,5 +4,5 @@
 /*
  * These values are automatically set according to their cmake variables.
  */
-#define PATCH_NUMBER_CONSTANT  ${PATCH_NUMBER_CONSTANT}
+#define PATCH_NUMBER_CONSTANT  "${PATCH_NUMBER_CONSTANT}"
 #endif /* VERSION_H */
