@@ -5,7 +5,7 @@
 
 static ::std::string expected_version("unknown");
 
-TEST(RunHelloWorld, ipAddr)
+TEST(IpFilter, ipAddr)
 {
     const auto ip1 = "0.0.0.1";
     const auto ip1data = ipAddress(ip1);
@@ -14,7 +14,7 @@ TEST(RunHelloWorld, ipAddr)
     ASSERT_EQ((ip1data < ip2data), true);
 }
 
-TEST(RunHelloWorld, ipAddr2)
+TEST(IpFilter, ipAddr2)
 {
     const auto ip1 = "2.0.0.1";
     const auto ip1data = ipAddress(ip1);
@@ -23,7 +23,7 @@ TEST(RunHelloWorld, ipAddr2)
     ASSERT_EQ((ip1data < ip2data), true);
 }
 
-TEST(RunHelloWorld, ipAdd3)
+TEST(IpFilter, ipAdd3)
 {
     const auto expected = "2.0.0.2";
     const auto actual = ipAddress(expected).toString();
