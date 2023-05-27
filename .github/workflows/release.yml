@@ -31,7 +31,7 @@ jobs:
       working-directory: ${{github.workspace}}/build/tests/
       # Execute tests defined by the CMake configuration.
       # See https://cmake.org/cmake/help/latest/manual/ctest.1.html for more detail
-      run: ./helloworld_test ${{github.run_number}}
+      run: ./ipaddr_test ${{github.run_number}}
 
     - name: Pack
       run: cmake --build ${{github.workspace}}/build --config ${{env.BUILD_TYPE}} --target package
