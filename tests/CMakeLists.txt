@@ -9,12 +9,12 @@ FetchContent_MakeAvailable(googletest)
 add_library(GTest::GTest INTERFACE IMPORTED)
 target_link_libraries(GTest::GTest INTERFACE gtest_main)
 
-add_executable(helloworld_test helloworld_test.cpp)
+add_executable(ipaddr_test ipaddr_test.cpp)
 
-target_link_libraries(helloworld_test
+target_link_libraries(ipaddr_test
  PRIVATE
   GTest::GTest
-  helloWorldLib)
+  ipFilterLib)
 
 enable_testing()
-add_test(NAME test COMMAND helloworld_test ${PATCH_NUMBER_CONSTANT})
+add_test(NAME test COMMAND ipaddr_test ${PATCH_NUMBER_CONSTANT})
