@@ -2,44 +2,34 @@
 #include <sstream>
 #include <regex>
 
+void readDelimeter(std::istream& in)
+{
+    char d;
+    in >> d;
+    if (d !='.')
+        throw std::runtime_error("invalid input");
+}
+
+int readByte(std::istream& in)
+{
+    int t = -1;
+    in >> t;
+    if (t >= 0 && t <=255)
+        return t;
+    
+    throw std::runtime_error("invalid input");
+}
+
 std::istream& operator>>(std::istream& in, ipAddress::ipStruct& data)
 {
-    int t1 = -1;
-    in >> t1;
-    if (t1 >= 0 && t1 <=255)
-        data.bytes[3] = t1;
-        char d1;
-        in >> d1;
-        if (d1 =='.')
-        {
-            int t2 = -1;
-            in >> t2;
-            if (t2 >= 0 && t2 <=255)
-                data.bytes[2] = t2;
-                char d2;
-                in >> d2;
-                if (d2 =='.')
-                {
-                    int t3 = -1;
-                    in >> t3;
-                    if (t3 >= 0 && t3 <=255)
-                        data.bytes[1] = t3;
-                        char d3;
-                        in >> d3;
-                        if (d3 =='.')
-                        {
-                            int t4 = -1;
-                            in >> t4;
-                            if (t4 >= 0 && t4 <=255)
-                            {
-                                data.bytes[0] = t4;
-                                return in;
-                            }
-                            
-                        }
-                }
-        }
-    throw std::runtime_error("invalid input");
+    data.bytes[3] = readByte(in);
+    readDelimeter(in);
+    data.bytes[2] = readByte(in);
+    readDelimeter(in);
+    data.bytes[1] = readByte(in);
+    readDelimeter(in);
+    data.bytes[0] = readByte(in);
+    return in;
 }
 
 ipAddress::ipAddress(std::string stringIp)
