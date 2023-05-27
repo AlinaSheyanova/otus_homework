@@ -1,10 +1,10 @@
-add_executable(helloworld_cli main.cpp)
+add_executable(ip_filter main.cpp)
 
-target_link_libraries(helloworld_cli
+target_link_libraries(ip_filter
  PRIVATE
-  helloWorldLib)
+  ipFilterLib)
 
-install(TARGETS helloworld_cli RUNTIME DESTINATION ${PROJECT_BINARY_DIR}/bin)
+install(TARGETS ip_filter RUNTIME DESTINATION ${PROJECT_BINARY_DIR}/bin)
 
 set(CPACK_GENERATOR DEB)
 
