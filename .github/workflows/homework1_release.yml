@@ -21,20 +21,22 @@ jobs:
     - name: Configure CMake
       # Configure CMake in a 'build' subdirectory. `CMAKE_BUILD_TYPE` is only required if you are using a single-configuration generator such as make.
       # See https://cmake.org/cmake/help/latest/variable/CMAKE_BUILD_TYPE.html?highlight=cmake_build_type
-      run: cmake -B ${{github.workspace}}/build -DCMAKE_BUILD_TYPE=${{env.BUILD_TYPE}} -DPATCH_NUMBER_CONSTANT=${{github.run_number}}
+      working-directory: ${{github.workspace}}/homework1/
+      run: cmake -B ./build -DCMAKE_BUILD_TYPE=${{env.BUILD_TYPE}} -DPATCH_NUMBER_CONSTANT=${{github.run_number}}
 
     - name: Build
       # Build your program with the given configuration
-      run: cmake --build ${{github.workspace}}/build --config ${{env.BUILD_TYPE}}
+      working-directory: ${{github.workspace}}/homework1/
+      run: cmake --build ./build --config ${{env.BUILD_TYPE}}
 
     - name: Test
-      working-directory: ${{github.workspace}}/build/tests/
+      working-directory: ${{github.workspace}}/homework1/build/tests/
       # Execute tests defined by the CMake configuration.
       # See https://cmake.org/cmake/help/latest/manual/ctest.1.html for more detail
       run: ./helloworld_test ${{github.run_number}}
 
     - name: Pack
-      run: cmake --build ${{github.workspace}}/build --config ${{env.BUILD_TYPE}} --target package
+      run: cmake --build ${{github.workspace}}/homework1/build --config ${{env.BUILD_TYPE}} --target package
 
     - name: Create Release
       id: create_release
@@ -54,7 +56,7 @@ jobs:
         GITHUB_TOKEN: ${{ secrets.MY_TOKEN }}
       with:
         upload_url: ${{ steps.create_release.outputs.upload_url }}
-        asset_path: ./build//helloworld-1.0.${{ github.run_number }}-Linux.deb
+        asset_path: ./homework1/build/helloworld-1.0.${{ github.run_number }}-Linux.deb
         asset_name: helloworld-1.0.${{ github.run_number }}-Linux.deb
         asset_content_type: application/vnd.debian.binary-package
 
