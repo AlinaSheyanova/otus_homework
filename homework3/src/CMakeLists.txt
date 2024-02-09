@@ -1,6 +1,6 @@
-add_executable(helloworld_cli main.cpp)
+add_executable(allocators_bin main.cpp)
 
-install(TARGETS helloworld_cli RUNTIME DESTINATION ${PROJECT_BINARY_DIR}/bin)
+install(TARGETS allocators_bin RUNTIME DESTINATION ${PROJECT_BINARY_DIR}/bin)
 
 set(CPACK_GENERATOR DEB)
 
