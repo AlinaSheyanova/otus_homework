@@ -10,6 +10,20 @@ TEST(IP2String, uint8_t)
     ASSERT_EQ(actual, expected);
 }
 
+TEST(IP2String, float_t)
+{
+    std::string expected = "";
+    std::string actual = ip_to_string( float {50.40} );
+    ASSERT_EQ(actual, expected);
+}
+
+TEST(IP2String, double_t)
+{
+    std::string expected = "";
+    std::string actual = ip_to_string( double {50.05} );
+    ASSERT_EQ(actual, expected);
+}
+
 TEST(IP2String, int16_t)
 {
     std::string expected = "0.0";

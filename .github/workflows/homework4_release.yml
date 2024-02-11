@@ -19,6 +19,24 @@ jobs:
     steps:
     - uses: actions/checkout@v3
 
+    - name: Install Doxygen
+      run: sudo apt-get install doxygen -y
+
+    - name: Generate Doxygen Documentation
+      working-directory: ${{github.workspace}}/homework4/
+      run: doxygen
+
+      # Deploy the HTML documentation to GitHub Pages
+    - name: GH Pages Deployment
+      uses: peaceiris/actions-gh-pages@v3
+      with:
+        github_token: ${{ secrets.MY_TOKEN }}
+        publish_dir: ${{github.workspace}}/homework4/docs/html/
+        enable_jekyll: false
+        allow_empty_commit: false
+        force_orphan: true
+        publish_branch: gh-pages
+
     - name: Configure CMake
       # Configure CMake in a 'build' subdirectory. `CMAKE_BUILD_TYPE` is only required if you are using a single-configuration generator such as make.
       # See https://cmake.org/cmake/help/latest/variable/CMAKE_BUILD_TYPE.html?highlight=cmake_build_type
