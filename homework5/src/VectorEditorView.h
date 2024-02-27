@@ -1,23 +1,31 @@
-//
-// Created by Lina1 on 26.02.2024.
-//
 #pragma once
 
 #include <memory>
 
-#include "Models/VectorDocument.h"
+#include "Models/VectorEditorModel.h"
 
-
+/**
+ * @class VectorEditorView
+ * @brief The VectorEditorView class represents a view for a VectorDocument model.
+ *
+ * This class provides the necessary functionality to display and interact with the VectorDocument model.
+ */
 class VectorEditorView : public std::enable_shared_from_this<VectorEditorView> {
 
-    VectorDocument _model;
+    std::shared_ptr<VectorEditorModel> _model;
 
 public:
 
-    explicit VectorEditorView(VectorDocument model)
+    /**
+     * @class VectorEditorView
+     * @brief The VectorEditorView class represents a view for a VectorDocument model.
+     *
+     * This class provides the necessary functionality to display and interact with the VectorDocument model.
+     */
+    explicit VectorEditorView(std::shared_ptr<VectorEditorModel> model)
     {
         _model = model;
-        _model.view = shared_from_this();
+        _model->_view = shared_from_this();
     }
 
 
