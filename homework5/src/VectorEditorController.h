@@ -13,10 +13,14 @@
 #include "Actions/DocumentActions/CloseDocumentAction.h"
 #include "Actions/DocumentActions/SaveDocumentToFile.h"
 #include "Actions/DocumentActions/CreateDocumentAction.h"
+#include "Actions/PrimitivesActions/CreatePrimitiveAction.h"
+#include "Actions/PrimitivesActions/DeletePrimitiveAction.h"
+#include "Actions/PrimitivesActions/SelectPrimitiveAction.h"
 
 class VectorEditorController : public std::enable_shared_from_this<VectorEditorController>{
 
     std::stack<std::shared_ptr<IUserAction>> _actionHistory;
+    std::stack<std::shared_ptr<IUserAction>> _canceledActions;
     std::shared_ptr<VectorEditorModel> _model;
 
 public:
@@ -62,11 +66,54 @@ public:
     };
 
 
-    void addGraphicsPrimitive();
-    void deleteGraphicsPrimitive();
-    void moveGraphicsPrimitive();
-    void resizeGraphicsPrimitive();
-    void selectGraphicsPrimitives();
+    void addLine()
+    {
+        auto action = std::make_shared<CreatePrimitiveAction<Line>>(_model);
+        action->Execute();
+        _actionHistory.push( action );
+    }
+
+    void addRectangle()
+    {
+        auto action = std::make_shared<CreatePrimitiveAction<Rectangle>>(_model);
+        action->Execute();
+        _actionHistory.push( action );
+    }
+
+    void deleteSelectedGraphicsPrimitive()
+    {
+        auto action = std::make_shared<DeletePrimitiveAction>(_model);
+        action->Execute();
+        _actionHistory.push(action);
+    }
+
+    void selectGraphicsPrimitives(Point point)
+    {
+        auto action = std::make_shared<SelectPrimitiveAction>(_model, point);
+        action->Execute();
+        _actionHistory.push(action);
+    }
+
+    void undo()
+    {
+        if (_actionHistory.empty())
+            return;
+        auto action = _actionHistory.top();
+        _actionHistory.pop();
+        action->Undo();
+        _canceledActions.push(action);
+
+    }
+
+    void redo()
+    {
+        if (_canceledActions.empty())
+            return;
+        auto action = _canceledActions.top();
+        _canceledActions.pop();
+        action->Execute();
+        _actionHistory.push(action);
+    }
 
 };
 

@@ -6,7 +6,8 @@
 #include "VectorDocument.h"
 
 #include "../VectorEditorView.h"
-
+#include "./GrapthPrimitives/Line.h."
+#include "GrapthPrimitives/Rectangle.h"
 
 class VectorEditorModel {
 
@@ -22,5 +23,6 @@ public:
     {
         return _document;
     }
+
 };
 
