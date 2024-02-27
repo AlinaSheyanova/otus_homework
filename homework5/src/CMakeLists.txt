@@ -1,11 +1,9 @@
-add_executable(helloworld_cli main.cpp
-        IGraphElement.h)
+add_executable(vector_editor main.cpp VectorEditorController.h Models/VectorDocument.h
+        VectorEditorView.h Actions/DocumentActions/OpenDocumentAction.h
+        Actions/DocumentActions/OpenDocumentAction.h
+        Actions/DocumentActions/OpenDocumentAction.h)
 
-target_link_libraries(helloworld_cli
- PRIVATE
-  helloWorldLib)
-
-install(TARGETS helloworld_cli RUNTIME DESTINATION ${PROJECT_BINARY_DIR}/bin)
+install(TARGETS vector_editor RUNTIME DESTINATION ${PROJECT_BINARY_DIR}/bin)
 
 set(CPACK_GENERATOR DEB)
 
