@@ -19,6 +19,9 @@ jobs:
     steps:
       - uses: actions/checkout@v3
 
+      - name: Install Graphviz
+        run: sudo apt-get install -y graphviz
+
       - name: Install Doxygen
         run: sudo apt-get install doxygen -y
 
@@ -57,7 +60,7 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.MY_TOKEN }}
         with:
-          tag_name: ${{ github.run_number }}
+          tag_name: 5.${{ github.run_number }}
           release_name: Release ${{ github.run_number }}
           draft: false
           prerelease: false

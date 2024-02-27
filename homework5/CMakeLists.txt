@@ -7,9 +7,6 @@ project(vector_editor)
 set(PROJECT_VERSION_MAJOR 1)
 set(PROJECT_VERSION_MINOR 0)
 
-if(NOT PATCH_NUMBER_CONSTANT)
-    set(PATCH_NUMBER_CONSTANT "unknown")
-endif()
 
 include_directories(
     ${CMAKE_BINARY_DIR}/include/
