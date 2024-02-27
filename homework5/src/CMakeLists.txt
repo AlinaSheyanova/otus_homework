@@ -1,7 +1,8 @@
 add_executable(vector_editor main.cpp VectorEditorController.h Models/VectorDocument.h
         VectorEditorView.h Actions/DocumentActions/OpenDocumentAction.h
         Actions/DocumentActions/OpenDocumentAction.h
-        Actions/DocumentActions/OpenDocumentAction.h)
+        Actions/DocumentActions/OpenDocumentAction.h
+        Actions/PrimitivesActions/CreatePrimitiveAction.h)
 
 install(TARGETS vector_editor RUNTIME DESTINATION ${PROJECT_BINARY_DIR}/bin)
 
