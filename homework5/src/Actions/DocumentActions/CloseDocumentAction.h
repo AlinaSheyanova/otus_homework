@@ -3,8 +3,8 @@
 #include <string>
 #include <utility>
 
-#include "../IUserAction.h"
-#include "../../Models/VectorEditorModel.h"
+#include "IUserAction.h"
+#include "VectorEditorModel.h"
 
 /**
  * @class CloseDocumentAction

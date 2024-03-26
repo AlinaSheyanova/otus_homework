@@ -1,3 +1,6 @@
+include_directories(Models Models/GraphPrimitives
+        Actions Actions/DocumentActions Actions/PrimitivesActions)
+
 add_executable(vector_editor  main.cpp)
 
 install(TARGETS vector_editor RUNTIME DESTINATION ${PROJECT_BINARY_DIR}/bin)

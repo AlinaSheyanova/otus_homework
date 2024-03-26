@@ -2,7 +2,7 @@
 #include <iostream>
 #include <cmath>
 
-#include "../IGraphPrimitive.h"
+#include "IGraphPrimitive.h"
 
 /**
  * @class Line

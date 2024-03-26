@@ -23,7 +23,7 @@ public:
      *
      * @note This function must be implemented in the subclass.
      */
-    virtual void Execute();
+    virtual void Execute() {};
 
     /**
      * @brief Undoes the user action.
@@ -34,7 +34,7 @@ public:
      *
      * @see IUserAction::Execute()
      */
-    virtual void Undo();
+    virtual void Undo() {};
 
     /**
      * @brief The IUserAction class represents an interface for user actions.

@@ -2,7 +2,7 @@
 
 #include <iostream>
 
-#include "../IGraphPrimitive.h"
+#include "IGraphPrimitive.h"
 
 /**
  * @class Rectangle

@@ -2,9 +2,6 @@
 
 #include "VectorDocument.h"
 
-#include "./GrapthPrimitives/Line.h."
-#include "GrapthPrimitives/Rectangle.h"
-
 /**
  * @class VectorEditorModel
  * @brief Represents a vector editor model.

@@ -1,8 +1,8 @@
 #ifndef HELLOWORLD_DELEREPRIMITIVEACTION_H
 #define HELLOWORLD_DELEREPRIMITIVEACTION_H
 
-#include "../IUserAction.h"
-#include "../../Models/VectorEditorModel.h"
+#include "IUserAction.h"
+#include "VectorEditorModel.h"
 
 /**
  * @class DeletePrimitiveAction

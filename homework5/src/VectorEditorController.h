@@ -7,15 +7,21 @@
 #include <stack>
 #include <memory>
 
-#include "Models/VectorEditorModel.h"
-#include "Actions/ActionComposition.h"
-#include "Actions/DocumentActions/OpenDocumentAction.h"
-#include "Actions/DocumentActions/CloseDocumentAction.h"
-#include "Actions/DocumentActions/SaveDocumentToFile.h"
-#include "Actions/DocumentActions/CreateDocumentAction.h"
-#include "Actions/PrimitivesActions/CreatePrimitiveAction.h"
-#include "Actions/PrimitivesActions/DeletePrimitiveAction.h"
-#include "Actions/PrimitivesActions/SelectPrimitiveAction.h"
+#include "VectorEditorModel.h"
+#include "VectorEditorView.h"
+
+#include "ActionComposition.h"
+#include "OpenDocumentAction.h"
+#include "CloseDocumentAction.h"
+#include "SaveDocumentToFile.h"
+
+#include "CreateDocumentAction.h"
+#include "CreatePrimitiveAction.h"
+#include "DeletePrimitiveAction.h"
+#include "SelectPrimitiveAction.h"
+
+#include "Line.h"
+#include "Rectangle.h"
 
 /**
  * @class VectorEditorController
@@ -30,8 +36,16 @@ class VectorEditorController : public std::enable_shared_from_this<VectorEditorC
     std::stack<std::shared_ptr<IUserAction>> _actionHistory;
     std::stack<std::shared_ptr<IUserAction>> _canceledActions;
     std::shared_ptr<VectorEditorModel> _model;
+    std::shared_ptr<VectorEditorView> _view;
 
 public:
+
+    VectorEditorController()
+    {
+        _model = std::make_shared<VectorEditorModel>();
+        _view = std::make_shared<VectorEditorView>();
+        _view->setModel(_model);
+    }
 
     /**
      * @brief Opens a document in the vector editor.
@@ -211,6 +225,15 @@ public:
 
     }
 
+    /**
+     * @brief Redo the last undone action.
+     *
+     * This function redoes the last undone action by popping it from the canceled actions stack, executing it, and pushing it back to the action history stack.
+     *
+     * If the canceled actions stack is empty, this function does nothing.
+     *
+     * @see IUserAction::Execute()
+     */
     void redo()
     {
         if (_canceledActions.empty())

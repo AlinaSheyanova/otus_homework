@@ -1,10 +1,8 @@
 #ifndef HELLOWORLD_CREATELINEACTION_H
 #define HELLOWORLD_CREATELINEACTION_H
 
-#include "../IUserAction.h"
-#include "../../Models/VectorEditorModel.h"
-#include "../../Models/GrapthPrimitives/Line.h"
-
+#include "IUserAction.h"
+#include "VectorEditorModel.h"
 
 /**
  * @class CreatePrimitiveAction

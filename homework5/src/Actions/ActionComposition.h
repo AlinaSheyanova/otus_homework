@@ -1,6 +1,3 @@
-//
-// Created by Lina1 on 26.02.2024.
-//
 #pragma once
 #include <memory>
 #include <vector>

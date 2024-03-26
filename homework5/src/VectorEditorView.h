@@ -22,13 +22,15 @@ public:
      *
      * This class provides the necessary functionality to display and interact with the VectorDocument model.
      */
-    explicit VectorEditorView(std::shared_ptr<VectorEditorModel> model)
+    VectorEditorView()
+    {
+    }
+
+    void setModel(std::shared_ptr<VectorEditorModel> model)
     {
         _model = model;
         _model->_view = shared_from_this();
     }
-
-
 
 };
 
