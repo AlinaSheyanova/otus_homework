@@ -3,8 +3,8 @@
 #include <string_view>
 #include <utility>
 
-#include "../IUserAction.h"
-#include "../../Models/VectorEditorModel.h"
+#include "IUserAction.h"
+#include "VectorEditorModel.h"
 
 /**
  * @class OpenDocumentAction
@@ -22,19 +22,8 @@ class OpenDocumentAction : public IUserAction
     std::shared_ptr<VectorEditorModel> _model;
     std::string _newFilePath;
 public:
-    /**
-     * @class OpenDocumentAction
-     * @brief Represents an action to open a document in the vector editor.
-     *
-     * This action sets the active document in the vector editor model based on the specified file path.
-     * If the file path is not empty, a new VectorDocument is created with the file path and set as the active document.
-     * If the file path is empty, the active document is set to nullptr, indicating no active document.
-     *
-     * @see IUserAction
-     * @see VectorEditorModel
-     */
-    OpenDocumentAction(std::shared_ptr<VectorEditorModel> model, std::string_view filePath) :
-     _model(model), _newFilePath(std::move(filePath)) {};
+
+    OpenDocumentAction(std::shared_ptr<VectorEditorModel> model, std::string_view filePath);
 
     /**
      * @brief Executes the action to open a document in the vector editor.
@@ -46,14 +35,7 @@ public:
      * @note This function overrides the Execute() function in the IUserAction class.
      * @see IUserAction
      */
-    void Execute() override
-    {
-        if (!_newFilePath.empty()) {
-            _model->setActiveDocument(std::make_shared<VectorDocument>(_newFilePath));
-        } else {
-            _model->setActiveDocument(nullptr);
-        }
-    };
+    void Execute() override;
 
     /**
      * @brief Undo function of the OpenDocumentAction class.
@@ -63,10 +45,7 @@ public:
      * @note This function overrides the Undo() function in the IUserAction class.
      * @see IUserAction
      */
-    void Undo() override
-    {
-        _model->setActiveDocument(nullptr);
-    };
+    void Undo() override;
 
 };
 

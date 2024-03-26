@@ -1,9 +1,9 @@
 #pragma once
 
-#include "VectorDocument.h"
+#include <memory>
 
-#include "./GrapthPrimitives/Line.h."
-#include "GrapthPrimitives/Rectangle.h"
+#include "VectorDocument.h"
+#include "VectorEditorView.h"
 
 /**
  * @class VectorEditorModel
@@ -15,7 +15,7 @@
 
 class VectorEditorView;
 
-class VectorEditorModel {
+class VectorEditorModel : public std::enable_shared_from_this<VectorEditorModel> {
 
     std::shared_ptr<VectorEditorView> _view;
     std::shared_ptr<VectorDocument> _document;
@@ -29,10 +29,7 @@ public:
      *
      * @param document The shared pointer to the document to set as active.
      */
-    void setActiveDocument(std::shared_ptr<VectorDocument> document)
-    {
-        _document = document;
-    }
+    void setActiveDocument(std::shared_ptr<VectorDocument> document);
 
     /**
      * @brief Get the active document.
@@ -41,10 +38,15 @@ public:
      *
      * @return std::shared_ptr<VectorDocument> The active document.
      */
-    std::shared_ptr<VectorDocument> getActiveDocument()
-    {
-        return _document;
-    }
+    std::shared_ptr<VectorDocument> getActiveDocument();
+
+    /**
+    * @brief Notifies that the document has changed.
+    *
+    * This function is called to notify that the document has changed. It triggers the drawing of the updated document
+    * on the view associated with the active document.
+    */
+    void notifyDocumentChanged();
 
     friend class VectorEditorView;
 

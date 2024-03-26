@@ -2,7 +2,7 @@
 
 #include <iostream>
 
-#include "../IGraphPrimitive.h"
+#include "IGraphPrimitive.h"
 
 /**
  * @class Rectangle
@@ -22,9 +22,7 @@ public:
      * This function overrides the draw() function in the IGraphElement interface.
      * It prints a message indicating that the rectangle is being drawn.
      */
-    void draw() override {
-        std::cout << "Drawing Rectangle.\n";
-    }
+    void draw() override;
 
     /**
      * @brief Checks if a given point is contained within the rectangle.
@@ -34,10 +32,6 @@ public:
      * @param point The point to be checked for containment.
      * @return True if the point is inside the rectangle, false otherwise.
      */
-    bool contains(Point point) override
-    {
-        return (point.X >= startPoint.X && point.X <= endPoint.X
-        && point.Y >= startPoint.Y && point.Y <= endPoint.Y );
-    }
+    bool contains(Point point) override;
 };
 

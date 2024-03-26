@@ -2,7 +2,7 @@
 #include <iostream>
 #include <cmath>
 
-#include "../IGraphPrimitive.h"
+#include "IGraphPrimitive.h"
 
 /**
  * @class Line
@@ -21,9 +21,7 @@ public:
      * This function is used to draw the Line. It prints "Drawing Line." to the console.
      * This function overrides the draw() function from the IGraphElement interface.
      */
-    void draw() override {
-        std::cout << "Drawing Line.\n";
-    }
+    void draw() override;
 
     /**
      * @brief Check if a given point is contained within the line segment defined by the start and end points.
@@ -33,11 +31,6 @@ public:
      * @param point The point to be checked.
      * @return True if the point is contained within the line segment, false otherwise.
      */
-    bool contains(Point point) override
-    {
-        return std::abs((point.Y - startPoint.Y)/(endPoint.Y - startPoint.Y)
-        - (point.X - startPoint.X)/(endPoint.X - startPoint.X)) < std::numeric_limits<double>::epsilon();
-
-    }
+    bool contains(Point point) override;
 };
 

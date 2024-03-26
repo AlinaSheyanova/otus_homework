@@ -7,6 +7,8 @@
 #include "IGraphPrimitive.h"
 #include "Point.h"
 
+class VectorEditorModel;
+
 /**
  * @class VectorDocument
  * @brief Represents a vector document.
@@ -28,17 +30,20 @@
 class VectorDocument {
     std::string _filePath;
     std::vector<std::shared_ptr<IGraphElement>> primitives;
+    std::shared_ptr<VectorEditorModel> _model;
     int _selectedItemIndex = -1;
 public:
 
     VectorDocument() = default;
 
-
-    explicit VectorDocument(std::string_view filePath)
-    : _filePath(filePath)
-    {
-
-    };
+    /**
+     * @brief Constructs a VectorDocument object.
+     *
+     * This constructor creates a VectorDocument object with the specified file path.
+     *
+     * @param filePath The path of the file associated with the vector document.
+     */
+    explicit VectorDocument(std::string_view filePath);;
 
     /**
      * @brief Imports a vector document from a file.
@@ -48,7 +53,7 @@ public:
      *
      * @param filepath The path of the file to import from.
      */
-    void importFromFile(const std::string &filepath) {}
+    void importFromFile(const std::string &filepath);
 
     /**
      * @brief Exports the vector document to a file.
@@ -58,7 +63,7 @@ public:
      *
      * @param filepath The path of the file to export to.
      */
-    void exportToFile(const std::string &filepath) {}
+    void exportToFile(const std::string &filepath);
 
     /**
      * @brief Get the file path associated with the vector document.
@@ -67,10 +72,7 @@ public:
      *
      * @return std::string The file path.
      */
-    std::string getFilepath()
-    {
-        return _filePath;
-    };
+    std::string getFilepath();
 
     /**
      * @brief Adds a primitive graph element to the vector document.
@@ -81,10 +83,7 @@ public:
      * @param primitive The shared pointer to the primitive graph element to be added.
      * @return The index at which the primitive was added in the vector document.
      */
-    int addPrimitive(std::shared_ptr<IGraphElement> primitive) {
-        primitives.push_back(primitive);
-        return primitives.size()-1;
-    }
+    int addPrimitive(std::shared_ptr<IGraphElement> primitive);
 
     /**
         * @brief Removes a primitive graph element from the vector document.
@@ -94,9 +93,7 @@ public:
         *
         * @param index The index of the primitive graph element to be removed.
         */
-    void removePrimitive(int index) {
-        primitives.erase(primitives.begin() + index);
-    }
+    void removePrimitive(int index);
 
     /**
      * @brief Retrieves a graph element from the vector document based on the specified index.
@@ -109,10 +106,7 @@ public:
      *
      * @note The function may return nullptr if the index is invalid or if there is no graph element at the specified index.
      */
-    std::shared_ptr<IGraphElement> getPrimitive(int index)
-    {
-        return primitives[index];
-    }
+    std::shared_ptr<IGraphElement> getPrimitive(int index);
 
     /**
      * @brief Draws the vector document.
@@ -122,11 +116,7 @@ public:
      *
      * @note The function does not modify the vector document or its primitives. It is a const member function.
      */
-    void drawDocument() const {
-        for(const auto &primitive : primitives) {
-            primitive->draw();
-        }
-    }
+    void drawDocument() const;
 
 
     /**
@@ -137,10 +127,7 @@ public:
      *
      * @return int The index of the currently selected graph element, or -1 if no element is selected.
      */
-    int getSelectedElementIndex()
-    {
-        return _selectedItemIndex;
-    }
+    int getSelectedElementIndex() const;
 
     /**
      * @brief Retrieves a graph element from the vector document based on the specified point.
@@ -153,13 +140,7 @@ public:
      *
      * @note The function may return nullptr if no graph element is found within the specified point.
      */
-    std::shared_ptr<IGraphElement> getElementIn(Point point) {
-        auto index = getElementIndexIn(point);
-        if (index != -1) {
-                return primitives[index];
-        }
-        return nullptr;
-    }
+    std::shared_ptr<IGraphElement> getElementIn(Point point) const;
 
     /**
      * @brief Get the index of a graph element in the vector document based on a point.
@@ -172,14 +153,7 @@ public:
      *
      * @note The function returns -1 if no graph element is found within the specified point.
      */
-    int getElementIndexIn(Point point){
-        for (int i = 0; i < primitives.size(); i++) {
-            if (primitives[i]->contains(point)) {
-                return i;
-            }
-        }
-        return -1;
-    }
+    int getElementIndexIn(Point point) const;
 
     /**
      * @brief Sets the selected item index.
@@ -189,11 +163,16 @@ public:
      *
      * @param index The index of the item to be selected.
      */
-    void setSelected(int index)
-    {
-        _selectedItemIndex = index;
-    }
+    void setSelected(int index);
 
+    /**
+     * @brief Sets the observer model for the vector document.
+     *
+     * This function sets the observer model for the vector document. The observer model is responsible for updating the user interface when the vector document changes.
+     *
+     * @param model The shared pointer to the observer model.
+     */
+    void setObserver(std::shared_ptr<VectorEditorModel> model);
 
 };
 
