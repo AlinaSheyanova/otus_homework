@@ -1,0 +1,4 @@
+<map id="SelectPrimitiveAction" name="SelectPrimitiveAction">
+<area shape="rect" id="node1" title="Represents an action to select a primitive in a vector editor." alt="" coords="5,160,192,267"/>
+<area shape="rect" id="node2" href="$d7/dd1/classIUserAction.html" title="The IUserAction class represents an interface for user actions." alt="" coords="32,5,165,112"/>
+</map>

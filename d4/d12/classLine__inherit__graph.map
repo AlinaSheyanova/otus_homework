@@ -1,0 +1,4 @@
+<map id="Line" name="Line">
+<area shape="rect" id="node1" title="Represents a line element in a graph." alt="" coords="13,160,116,252"/>
+<area shape="rect" id="node2" href="$d2/d19/classIGraphElement.html" title="The abstract base class for graph elements." alt="" coords="5,5,124,112"/>
+</map>

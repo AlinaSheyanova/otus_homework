@@ -1,0 +1,4 @@
+<map id="ActionComposition" name="ActionComposition">
+<area shape="rect" id="node1" title="Represents an action that is composed of multiple user actions." alt="" coords="5,160,176,281"/>
+<area shape="rect" id="node2" href="$d7/dd1/classIUserAction.html" title="The IUserAction class represents an interface for user actions." alt="" coords="24,5,157,112"/>
+</map>

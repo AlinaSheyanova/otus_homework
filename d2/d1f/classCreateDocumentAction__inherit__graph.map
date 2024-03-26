@@ -1,0 +1,4 @@
+<map id="CreateDocumentAction" name="CreateDocumentAction">
+<area shape="rect" id="node1" title="Represents an action to create a new document in a vector editor model." alt="" coords="5,160,204,267"/>
+<area shape="rect" id="node2" href="$d7/dd1/classIUserAction.html" title="The IUserAction class represents an interface for user actions." alt="" coords="38,5,171,112"/>
+</map>

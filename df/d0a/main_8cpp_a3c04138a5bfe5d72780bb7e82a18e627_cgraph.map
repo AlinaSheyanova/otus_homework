@@ -1,0 +1,9 @@
+<map id="main" name="main">
+<area shape="rect" id="node1" title=" " alt="" coords="5,177,60,203"/>
+<area shape="rect" id="node2" href="$d8/d37/classVectorEditorController.html#a4f24e49f3a4d2a01ee516f05a4e530bf" title="Adds a Line primitive to the active document." alt="" coords="108,5,273,47"/>
+<area shape="rect" id="node3" href="$d8/d37/classVectorEditorController.html#a9ad7eff77b5158be81c19e10437bb857" title="This function is used to add a rectangle to the model." alt="" coords="108,71,273,112"/>
+<area shape="rect" id="node4" href="$d8/d37/classVectorEditorController.html#a8f5e58df4b3720069e1001dd42c2921a" title="Closes the active document in the vector editor." alt="" coords="108,136,273,177"/>
+<area shape="rect" id="node5" href="$d8/d37/classVectorEditorController.html#a37b462cabe6a7f208aac879403d09496" title="Opens a document in the vector editor." alt="" coords="108,201,273,243"/>
+<area shape="rect" id="node6" href="$d8/d37/classVectorEditorController.html#a93a59ceb22e47c4e053a2c56cc0e8f84" title="Saves the active document to a file." alt="" coords="108,267,273,308"/>
+<area shape="rect" id="node7" href="$d8/d37/classVectorEditorController.html#a850966643ac2ea64e30d65b245760371" title="Undo the last action performed." alt="" coords="108,332,273,373"/>
+</map>

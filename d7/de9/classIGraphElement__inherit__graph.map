@@ -1,0 +1,5 @@
+<map id="IGraphElement" name="IGraphElement">
+<area shape="rect" id="node1" title="The abstract base class for graph elements." alt="" coords="124,5,243,112"/>
+<area shape="rect" id="node2" href="$db/db6/classLine.html" title="Represents a line element in a graph." alt="" coords="5,160,108,252"/>
+<area shape="rect" id="node3" href="$de/d00/classRectangle.html" title="A class representing a rectangle in a 2D Cartesian coordinate system." alt="" coords="132,160,235,252"/>
+</map>

@@ -1,0 +1,5 @@
+<map id="Graphical Class Hierarchy" name="Graphical Class Hierarchy">
+<area shape="rect" id="node1" href="$d2/d19/classIGraphElement.html" title="The abstract base class for graph elements." alt="" coords="5,31,124,57"/>
+<area shape="rect" id="node2" href="$db/db6/classLine.html" title="Represents a line element in a graph." alt="" coords="191,5,240,32"/>
+<area shape="rect" id="node3" href="$de/d00/classRectangle.html" title="A class representing a rectangle in a 2D Cartesian coordinate system." alt="" coords="172,56,259,83"/>
+</map>

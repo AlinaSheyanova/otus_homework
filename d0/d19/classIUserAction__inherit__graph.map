@@ -1,0 +1,11 @@
+<map id="IUserAction" name="IUserAction">
+<area shape="rect" id="node1" title="The IUserAction class represents an interface for user actions." alt="" coords="773,5,907,112"/>
+<area shape="rect" id="node2" href="$dc/d8c/classActionComposition.html" title="Represents an action that is composed of multiple user actions." alt="" coords="5,160,176,281"/>
+<area shape="rect" id="node3" href="$df/d49/classCloseDocumentAction.html" title="Represents an action to close the active document in a vector editor model." alt="" coords="201,167,391,274"/>
+<area shape="rect" id="node4" href="$d5/da2/classCreateDocumentAction.html" title="Represents an action to create a new document in a vector editor model." alt="" coords="415,167,614,274"/>
+<area shape="rect" id="node5" href="$dc/d93/classCreatePrimitiveAction.html" title="A class representing an action to create a primitive." alt="" coords="638,160,829,281"/>
+<area shape="rect" id="node6" href="$d7/d95/classDeletePrimitiveAction.html" title="Represents an action to delete a primitive from a vector editor model." alt="" coords="853,167,1043,274"/>
+<area shape="rect" id="node7" href="$da/d10/classOpenDocumentAction.html" title="Represents an action to open a document in the vector editor." alt="" coords="1068,167,1257,274"/>
+<area shape="rect" id="node8" href="$df/df2/classSaveDocumentToFile.html" title="A class that represents the action of saving a document to a file." alt="" coords="1282,167,1465,274"/>
+<area shape="rect" id="node9" href="$df/d9f/classSelectPrimitiveAction.html" title="Represents an action to select a primitive in a vector editor." alt="" coords="1489,167,1676,274"/>
+</map>
