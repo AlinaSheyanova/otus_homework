@@ -3,8 +3,8 @@
 #include <string>
 #include <utility>
 
-#include "../IUserAction.h"
-#include "../../Models/VectorEditorModel.h"
+#include "IUserAction.h"
+#include "VectorEditorModel.h"
 
 /**
  * @class CreateDocumentAction
@@ -26,8 +26,7 @@ public:
      * by setting an active document with a new instance of VectorDocument.
      * It also provides the ability to undo this action by setting the active document to null.
      */
-    CreateDocumentAction(std::shared_ptr<VectorEditorModel> model) :
-            _model(model) {};
+    explicit CreateDocumentAction(std::shared_ptr<VectorEditorModel> model);
 
     /**
      * @class CreateDocumentAction
@@ -37,10 +36,7 @@ public:
      * by setting an active document with a new instance of VectorDocument.
      * It also provides the ability to undo this action by setting the active document to null.
      */
-    void Execute() override
-    {
-        _model->setActiveDocument(std::make_shared<VectorDocument>());
-    };
+    void Execute() override;
 
     /**
      * @brief Undo the action by setting the active document to null.
@@ -48,10 +44,7 @@ public:
      * This function is responsible for undoing the action of creating a new document in the vector editor model.
      * It sets the active document to null by calling the `setActiveDocument` function of the model with a nullptr parameter.
      */
-    void Undo() override
-    {
-        _model->setActiveDocument(nullptr);
-    };
+    void Undo() override;
 
 };
 

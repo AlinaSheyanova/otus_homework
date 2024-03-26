@@ -2,9 +2,6 @@
 
 #include "VectorDocument.h"
 
-#include "./GrapthPrimitives/Line.h."
-#include "GrapthPrimitives/Rectangle.h"
-
 /**
  * @class VectorEditorModel
  * @brief Represents a vector editor model.
@@ -29,10 +26,7 @@ public:
      *
      * @param document The shared pointer to the document to set as active.
      */
-    void setActiveDocument(std::shared_ptr<VectorDocument> document)
-    {
-        _document = document;
-    }
+    void setActiveDocument(std::shared_ptr<VectorDocument> document);
 
     /**
      * @brief Get the active document.
@@ -41,10 +35,7 @@ public:
      *
      * @return std::shared_ptr<VectorDocument> The active document.
      */
-    std::shared_ptr<VectorDocument> getActiveDocument()
-    {
-        return _document;
-    }
+    std::shared_ptr<VectorDocument> getActiveDocument();
 
     friend class VectorEditorView;
 

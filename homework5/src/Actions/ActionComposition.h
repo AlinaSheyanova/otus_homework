@@ -1,6 +1,3 @@
-//
-// Created by Lina1 on 26.02.2024.
-//
 #pragma once
 #include <memory>
 #include <vector>
@@ -19,7 +16,8 @@ class ActionComposition : public IUserAction
 {
     std::vector<IUserAction> actions;
 public:
-    ActionComposition() {};
+
+    ActionComposition() = default;
 
     /**
      * @brief Adds an action to the ActionComposition
@@ -29,10 +27,7 @@ public:
      *
      * @param action The action to be added to the ActionComposition
      */
-    void addAction(IUserAction&& action)
-    {
-        actions.push_back(action);
-    }
+    void addAction(IUserAction&& action);
 
     /**
      * @fn void ActionComposition::Execute()
@@ -50,13 +45,7 @@ public:
      *
      * @see addAction()
      */
-    void Execute() override
-    {
-        for( auto action: actions)
-        {
-            action.Execute();
-        }
-    };
+    void Execute() override;;
 
     /**
      * @fn void ActionComposition::Undo()

@@ -15,7 +15,7 @@ public:
     /**
      * @brief Constructs a Point object by default
      */
-    Point() {};
+    Point() = default;
 
     /**
      * @brief Constructs a Point object with the specified X and Y coordinates.
@@ -32,7 +32,7 @@ public:
      *
      * @param other The Point object to be copied.
      */
-    Point(const Point &other) : X(other.X), Y(other.Y) {}
+    Point(const Point &other) = default;
 
     /**
      * @brief Overloads the assignment operator for the Point class
@@ -42,11 +42,7 @@ public:
      * @param other The Point object to be assigned
      * @return Reference to the current Point object after assignment
      */
-    Point &operator=(const Point &other) {
-        X = other.X;
-        Y = other.Y;
-        return *this;
-    }
+    Point &operator=(const Point &other) = default;
 
 };
 

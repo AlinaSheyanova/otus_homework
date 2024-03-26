@@ -1,10 +1,7 @@
-#ifndef HELLOWORLD_CREATELINEACTION_H
-#define HELLOWORLD_CREATELINEACTION_H
+#pragma once
 
-#include "../IUserAction.h"
-#include "../../Models/VectorEditorModel.h"
-#include "../../Models/GrapthPrimitives/Line.h"
-
+#include "IUserAction.h"
+#include "VectorEditorModel.h"
 
 /**
  * @class CreatePrimitiveAction
@@ -23,8 +20,8 @@ class CreatePrimitiveAction : public IUserAction
     std::shared_ptr<VectorEditorModel> _model;
     int _primitiveIndex = -1;
 public:
-    CreatePrimitiveAction(std::shared_ptr<VectorEditorModel> model) :
-            _model(model) {};
+
+    explicit CreatePrimitiveAction(std::shared_ptr<VectorEditorModel> model);
 
     /**
      * @brief CreatePrimitiveAction::Execute
@@ -34,10 +31,7 @@ public:
      *
      * @tparam PrimitiveType The type of the primitive to create.
      */
-    void Execute() override
-    {
-        _primitiveIndex = _model->getActiveDocument()->addPrimitive(std::make_shared<PrimitiveType>());
-    };
+    void Execute() override;
 
     /**
      * @brief Undo the action of creating a primitive.
@@ -47,11 +41,21 @@ public:
      *
      * @note The primitive index must be set before calling this method.
      */
-    void Undo() override
-    {
-        _model->getActiveDocument()->removePrimitive(_primitiveIndex);
-    };
+    void Undo() override;
 
 };
 
-#endif //HELLOWORLD_CREATELINEACTION_H
+template<typename PrimitiveType>
+void CreatePrimitiveAction<PrimitiveType>::Undo() {
+    _model->getActiveDocument()->removePrimitive(_primitiveIndex);
+}
+
+template<typename PrimitiveType>
+void CreatePrimitiveAction<PrimitiveType>::Execute() {
+    _primitiveIndex = _model->getActiveDocument()->addPrimitive(std::make_shared<PrimitiveType>());
+}
+
+template<typename PrimitiveType>
+CreatePrimitiveAction<PrimitiveType>::CreatePrimitiveAction(std::shared_ptr<VectorEditorModel> model) :
+        _model(model) {}
+

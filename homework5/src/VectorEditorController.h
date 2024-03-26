@@ -7,15 +7,21 @@
 #include <stack>
 #include <memory>
 
-#include "Models/VectorEditorModel.h"
-#include "Actions/ActionComposition.h"
-#include "Actions/DocumentActions/OpenDocumentAction.h"
-#include "Actions/DocumentActions/CloseDocumentAction.h"
-#include "Actions/DocumentActions/SaveDocumentToFile.h"
-#include "Actions/DocumentActions/CreateDocumentAction.h"
-#include "Actions/PrimitivesActions/CreatePrimitiveAction.h"
-#include "Actions/PrimitivesActions/DeletePrimitiveAction.h"
-#include "Actions/PrimitivesActions/SelectPrimitiveAction.h"
+#include "VectorEditorModel.h"
+#include "VectorEditorView.h"
+
+#include "ActionComposition.h"
+#include "OpenDocumentAction.h"
+#include "CloseDocumentAction.h"
+#include "SaveDocumentToFile.h"
+
+#include "CreateDocumentAction.h"
+#include "CreatePrimitiveAction.h"
+#include "DeletePrimitiveAction.h"
+#include "SelectPrimitiveAction.h"
+
+#include "Line.h"
+#include "Rectangle.h"
 
 /**
  * @class VectorEditorController
@@ -30,8 +36,11 @@ class VectorEditorController : public std::enable_shared_from_this<VectorEditorC
     std::stack<std::shared_ptr<IUserAction>> _actionHistory;
     std::stack<std::shared_ptr<IUserAction>> _canceledActions;
     std::shared_ptr<VectorEditorModel> _model;
+    std::shared_ptr<VectorEditorView> _view;
 
 public:
+
+    VectorEditorController();
 
     /**
      * @brief Opens a document in the vector editor.
@@ -51,23 +60,7 @@ public:
      * @see CloseDocumentAction
      * @see OpenDocumentAction
      */
-    void openDocument(std::string_view filePath)
-    {
-        std::shared_ptr<IUserAction> action;
-        if (_model->getActiveDocument() != nullptr)
-        {
-            auto command = std::make_shared<ActionComposition>();
-            command->addAction(CloseDocumentAction(_model));
-            command->addAction(OpenDocumentAction(_model, filePath));
-            action = command;
-        }
-        else
-        {
-            action = std::make_shared<OpenDocumentAction>(_model, filePath);
-        }
-        action->Execute();
-        _actionHistory.push( action );
-    };
+    void openDocument(std::string_view filePath);;
 
     /**
      * @brief Closes the active document in the vector editor.
@@ -79,13 +72,7 @@ public:
      *
      * The function then adds the action to the action history stack.
      */
-    void closeDocument()
-    {
-        //TODO check last save and save if it is need
-        auto action = std::make_shared<CloseDocumentAction>(_model);
-        action->Execute();
-        _actionHistory.push( action );
-    };
+    void closeDocument();;
 
     /**
      * @fn VectorEditorController::saveDocument
@@ -99,12 +86,7 @@ public:
      *
      * @see SaveDocumentToFile
      */
-    void saveDocument(std::string_view filePath)
-    {
-        auto action = std::make_shared<SaveDocumentToFile>(_model, filePath);
-        action->Execute();
-        _actionHistory.push( action );
-    };
+    void saveDocument(std::string_view filePath);;
 
     /**
      * @brief Create a new document in the vector editor.
@@ -115,13 +97,7 @@ public:
      *
      * @see CreateDocumentAction
      */
-    void createDocument()
-    {
-        auto action = std::make_shared<CreateDocumentAction>(_model);
-        action->Execute();
-        _actionHistory.push( action );
-    };
-
+    void createDocument();;
 
     /**
      * @brief Adds a Line primitive to the active document.
@@ -132,12 +108,7 @@ public:
      *
      * @see CreatePrimitiveAction
      */
-    void addLine()
-    {
-        auto action = std::make_shared<CreatePrimitiveAction<Line>>(_model);
-        action->Execute();
-        _actionHistory.push( action );
-    }
+    void addLine();
 
     /**
     * \brief This function is used to add a rectangle to the model.
@@ -149,12 +120,7 @@ public:
     *
     * \return None.
     */
-    void addRectangle()
-    {
-        auto action = std::make_shared<CreatePrimitiveAction<Rectangle>>(_model);
-        action->Execute();
-        _actionHistory.push( action );
-    }
+    void addRectangle();
 
     /**
      * @fn void deleteSelectedGraphicsPrimitive()
@@ -166,12 +132,7 @@ public:
      *
      * @see DeletePrimitiveAction
      */
-    void deleteSelectedGraphicsPrimitive()
-    {
-        auto action = std::make_shared<DeletePrimitiveAction>(_model);
-        action->Execute();
-        _actionHistory.push(action);
-    }
+    void deleteSelectedGraphicsPrimitive();
 
     /**
      * @brief Selects graphics primitives based on the given point.
@@ -183,12 +144,7 @@ public:
      *
      * @param point The point to be used for selecting graphics primitives.
      */
-    void selectGraphicsPrimitives(Point point)
-    {
-        auto action = std::make_shared<SelectPrimitiveAction>(_model, point);
-        action->Execute();
-        _actionHistory.push(action);
-    }
+    void selectGraphicsPrimitives(Point point);
 
     /**
      * @brief Undo the last action performed.
@@ -200,26 +156,18 @@ public:
      *
      * @see Action::Undo()
      */
-    void undo()
-    {
-        if (_actionHistory.empty())
-            return;
-        auto action = _actionHistory.top();
-        _actionHistory.pop();
-        action->Undo();
-        _canceledActions.push(action);
+    void undo();
 
-    }
-
-    void redo()
-    {
-        if (_canceledActions.empty())
-            return;
-        auto action = _canceledActions.top();
-        _canceledActions.pop();
-        action->Execute();
-        _actionHistory.push(action);
-    }
+    /**
+     * @brief Redo the last undone action.
+     *
+     * This function redoes the last undone action by popping it from the canceled actions stack, executing it, and pushing it back to the action history stack.
+     *
+     * If the canceled actions stack is empty, this function does nothing.
+     *
+     * @see IUserAction::Execute()
+     */
+    void redo();
 
 };
 

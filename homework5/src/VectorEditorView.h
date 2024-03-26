@@ -16,19 +16,19 @@ class VectorEditorView : public std::enable_shared_from_this<VectorEditorView> {
 
 public:
 
+    VectorEditorView() = default;
+
     /**
-     * @class VectorEditorView
-     * @brief The VectorEditorView class represents a view for a VectorDocument model.
+     * @brief Set the model for the VectorEditorView.
      *
-     * This class provides the necessary functionality to display and interact with the VectorDocument model.
+     * This function sets the model for the VectorEditorView. It takes a shared pointer to a VectorEditorModel as a parameter and assigns it to the _model member variable. It also sets the
+    * _view member variable of the model to a shared pointer to this VectorEditorView.
+     *
+     * @param model The shared pointer to the model to set.
+     *
+     * @see VectorEditorModel
      */
-    explicit VectorEditorView(std::shared_ptr<VectorEditorModel> model)
-    {
-        _model = model;
-        _model->_view = shared_from_this();
-    }
-
-
+    void setModel(std::shared_ptr<VectorEditorModel> model);
 
 };
 

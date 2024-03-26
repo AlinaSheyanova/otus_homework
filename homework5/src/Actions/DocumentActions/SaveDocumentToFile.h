@@ -3,8 +3,8 @@
 #include <string_view>
 #include <utility>
 
-#include "../IUserAction.h"
-#include "../../Models/VectorEditorModel.h"
+#include "IUserAction.h"
+#include "VectorEditorModel.h"
 
 /**
  * @class SaveDocumentToFile
@@ -20,14 +20,17 @@ class SaveDocumentToFile : public IUserAction
     std::shared_ptr<VectorEditorModel> _model;
     std::string _newFilePath;
 public:
+
     /**
-     * @class SaveDocumentToFile
-     * @brief A class that represents the action of saving a document to a file.
+     * @brief Saves the document to a specified file path.
      *
-     * This class inherits from IUserAction and provides the necessary functionality to execute the save action.
+     * This function saves the active document of the model to the specified file path.
+     * If the file path is empty, no action is performed.
+     *
+     * @param model A shared pointer to a VectorEditorModel object representing the model.
+     * @param filePath A string_view representing the file path to save the document to.
      */
-    SaveDocumentToFile(std::shared_ptr<VectorEditorModel> model, std::string_view filePath) :
-            _model(model), _newFilePath(std::move(filePath)) {};
+    SaveDocumentToFile(std::shared_ptr<VectorEditorModel> model, std::string_view filePath);
 
     /**
      * @fn SaveDocumentToFile::Execute
@@ -38,12 +41,7 @@ public:
      *
      * @note This method overrides the Execute method from the IUserAction interface.
      */
-    void Execute() override
-    {
-        if (!_newFilePath.empty()) {
-            _model->getActiveDocument()->exportToFile(_newFilePath);
-        }
-    };
+    void Execute() override;
 
     /**
      * @fn SaveDocumentToFile::Undo
@@ -53,10 +51,7 @@ public:
      *
      * @note This method overrides the Undo method from the IUserAction interface.
      */
-    void Undo() override
-    {
-        //do noting
-    };
+    void Undo() override;
 
 };
 

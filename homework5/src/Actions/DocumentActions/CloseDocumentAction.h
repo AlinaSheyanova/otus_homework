@@ -3,8 +3,8 @@
 #include <string>
 #include <utility>
 
-#include "../IUserAction.h"
-#include "../../Models/VectorEditorModel.h"
+#include "IUserAction.h"
+#include "VectorEditorModel.h"
 
 /**
  * @class CloseDocumentAction
@@ -20,8 +20,7 @@ class CloseDocumentAction : public IUserAction
     std::string _currentFilePath;
 public:
 
-    CloseDocumentAction(std::shared_ptr<VectorEditorModel> model) :
-            _model(model) {};
+    explicit CloseDocumentAction(std::shared_ptr<VectorEditorModel> model);
 
     /**
      * @brief Executes the action to close the active document in the vector editor model.
@@ -32,15 +31,7 @@ public:
      *
      * @note If there is no active document, the _currentFilePath member variable will remain unchanged.
      */
-    void Execute() override
-    {
-        auto currentDocument = _model->getActiveDocument();
-        if(currentDocument != nullptr) {
-            _currentFilePath = currentDocument->getFilepath();
-        }
-        _model->setActiveDocument(nullptr);
-
-    };
+    void Execute() override;
 
     /**
      * @brief Undo the action of closing the active document.
@@ -51,13 +42,6 @@ public:
      *
      * @note If the _currentFilePath member variable is empty, no action is performed.
      */
-    void Undo() override
-    {
-        if (!_currentFilePath.empty()) {
-            _model->setActiveDocument(std::make_shared<VectorDocument>(_currentFilePath));
-        }
-    };
+    void Undo() override;
 
 };
-
-

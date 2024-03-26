@@ -1,8 +1,7 @@
-#ifndef HELLOWORLD_DELEREPRIMITIVEACTION_H
-#define HELLOWORLD_DELEREPRIMITIVEACTION_H
+#pragma once
 
-#include "../IUserAction.h"
-#include "../../Models/VectorEditorModel.h"
+#include "IUserAction.h"
+#include "VectorEditorModel.h"
 
 /**
  * @class DeletePrimitiveAction
@@ -23,11 +22,13 @@ class DeletePrimitiveAction : public IUserAction
     std::shared_ptr<IGraphElement> _deletedElement;
     int _primitiveIndex = -1;
 public:
-    DeletePrimitiveAction(std::shared_ptr<VectorEditorModel> model) :
-            _model(model)
-    {
-        _primitiveIndex = _model->getActiveDocument()->getSelectedElementIndex();
-    };
+
+    /**
+     * @brief Constructor for DeletePrimitiveAction.
+     *
+     * @param model The vector editor model to associate with this action.
+     */
+    explicit DeletePrimitiveAction(std::shared_ptr<VectorEditorModel> model);;
 
     /**
      * @brief Executes the deletion of a primitive from a vector editor model.
@@ -35,11 +36,7 @@ public:
      * This method is part of the DeletePrimitiveAction class and is an override of the Execute method inherited from the IUserAction interface.
      * It retrieves the active document from the vector editor model, removes the primitive at the specified index, and stores the deleted primitive in _deletedElement.
      */
-    void Execute() override
-    {
-        _deletedElement = _model->getActiveDocument()->getPrimitive(_primitiveIndex);
-        _model->getActiveDocument()->removePrimitive(_primitiveIndex);
-    };
+    void Execute() override;;
 
     /**
      * @brief Undoes the deletion of a primitive in a vector editor model.
@@ -49,11 +46,6 @@ public:
      *
      * @note The Undo method assumes that the deleted primitive was previously stored in _deletedElement and the original index of the primitive was stored in _primitiveIndex.
      */
-    void Undo() override
-    {
-        _primitiveIndex = _model->getActiveDocument()->addPrimitive(_deletedElement);
-    };
+    void Undo() override;;
 
 };
-
-#endif //HELLOWORLD_DELEREPRIMITIVEACTION_H
